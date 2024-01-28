@@ -16,13 +16,8 @@ export class LineChartComponent implements OnInit {
     console.log("Ejecuta line-chart")
     this.inicializarChart();
   }
-  ngOnDestroy() {
-    this.destroyChart();
-  }
 
   private inicializarChart(){
-    // Destruir el gráfico existente si existe
-    this.destroyChart();
     // datos
     const data = {
       labels: ['January', 'February', 'March', 'April', 'May', 'June', 'July'],
@@ -61,12 +56,5 @@ export class LineChartComponent implements OnInit {
     });
     this.chart.canvas.width = 100;
     this.chart.canvas.height = 100;
-  }
-
-  private destroyChart() {
-    // Destruir el gráfico si existe
-    if (this.chart) {
-      this.chart.destroy();
-    }
   }
 }

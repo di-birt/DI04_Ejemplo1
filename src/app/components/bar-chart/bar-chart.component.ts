@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Chart, ChartType } from 'chart.js/auto';
 
 @Component({
@@ -15,18 +15,14 @@ export class BarChartComponent implements OnInit {
     console.log("Ejecuta bar-chart")
     this.inicializarChart();
   }
-  ngOnDestroy() {
-    this.destroyChart();
-  }
 
   private inicializarChart(){
-    // Destruir el gráfico existente si existe
-    this.destroyChart();
     // datos
     const data = {
       labels: ['January', 'February', 'March', 'April', 'May', 'June', 'July'],
-      datasets: [{
-        label: 'My First Dataset',
+      datasets: [
+      {
+        label: 'Dataset 1',
         data: [65, 59, 80, 81, 56, 55, 40],
         fill: false,
         backgroundColor: [
@@ -48,7 +44,32 @@ export class BarChartComponent implements OnInit {
           'rgb(201, 203, 207)'
         ],
         tension: 0.1
-      }]
+      },
+      {
+        label: 'Dataset 2',
+        data: [30, 45, 70, 35, 75, 90, 60],
+        fill: false,
+        backgroundColor: [
+          'rgba(255, 0, 0, 0.2)',
+          'rgba(0, 255, 0, 0.2)',
+          'rgba(0, 0, 255, 0.2)',
+          'rgba(255, 255, 0, 0.2)',
+          'rgba(255, 0, 255, 0.2)',
+          'rgba(0, 255, 255, 0.2)',
+          'rgba(128, 128, 128, 0.2)'
+        ],
+        borderColor: [
+          'rgb(255, 0, 0)',
+          'rgb(0, 255, 0)',
+          'rgb(0, 0, 255)',
+          'rgb(255, 255, 0)',
+          'rgb(255, 0, 255)',
+          'rgb(0, 255, 255)',
+          'rgb(128, 128, 128)'
+        ],
+        tension: 0.1
+      },
+    ]
     };
     // Creamos la gráfica
     this.chart = new Chart("barChart", {
@@ -77,12 +98,5 @@ export class BarChartComponent implements OnInit {
     });
     this.chart.canvas.width = 100;
     this.chart.canvas.height = 100;
-  }
-
-  private destroyChart() {
-    // Destruir el gráfico si existe
-    if (this.chart) {
-      this.chart.destroy();
-    }
   }
 }
